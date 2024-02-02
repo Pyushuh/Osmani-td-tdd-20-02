@@ -80,5 +80,6 @@ console.log(`Montant total du panier après vidage : ${panier.calculerMontantTot
 
 module.exports = {
     Cube:Cube,
-    Panier:Panier
+    Panier:Panier,
+    Article:Article
 }
