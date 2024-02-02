@@ -1,6 +1,7 @@
 const Cube = require('../src/app').Cube;
+const Panier = require('../src/app').Panier;
 const expect = require('chai').expect;
-
+//tests du cube
 describe('Testing the Cube Functions', function() {
     it('1. The side length of the Cube', function(done) {
         let c1 = new Cube(2);
@@ -20,4 +21,8 @@ describe('Testing the Cube Functions', function() {
         done();
     });
     
+});
+
+describe('Tests des fonctions de la classe Panier', function() {
+
 });
