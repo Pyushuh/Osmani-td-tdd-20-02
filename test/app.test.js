@@ -43,7 +43,7 @@ describe('Tests de la classe Panier', function () {
         article3 = new Article("T-shirt", 34);
         articleErrrone = new Article("T-shirt frauduleux", -34);
         remise = 20;
-        coupon =10;
+        coupon = 10;
         couponNegatif = -20;
         couponSuperieur = 120;
     });
@@ -120,6 +120,17 @@ describe('Tests de la classe Panier', function () {
     });
 });
 
+describe('Tests de la classe Coupon', function () {
+    it('devrait vérifier que le coupon existe', function () {
+        panier.ajouterArticle(article1);
+        panier.ajouterCouponSurArticle(article1, couponSuperieur);
+        assert.equal(article1.prix, 53);
+    });
+
+    it('devrait vérifier que le coupon n \'existe pas', function () {
+    });
+});
+
 describe('Tests de la classe Stock', function () {
     let stock;
     let article1, article2, article3;
@@ -191,7 +202,6 @@ describe('Tests de la classe Stock', function () {
             }
         });
     });
-
 
 
 });
