@@ -173,6 +173,21 @@ class Panier {
         }
     }
 
+    ajouterCouponSurArticle(article, coupon) {
+        console.log(article.prix)
+        if (article.couponApplique === true) {
+            console.log("Un seul coupon peut être utilisé sur l'article");
+        } else if (coupon > 0 && coupon < 100) {
+            const remise = article.prix * (coupon / 100);
+            article.prixReduit = article.prix - remise;
+            article.prix = article.prixReduit;
+            article.couponApplique = true;
+            console.log(`Remise de ${coupon}% appliquée sur l'article ${article.nom}.`);
+        } else {
+            console.log("La remise en pourcentage doit être comprise entre 0 et 100.");
+        }
+    }
+
     viderPanier() {
         this.articles = [];
         this.remiseAppliquee = false;
@@ -187,6 +202,7 @@ class Article {
         this.prixReduit = prix;
         this.stockQuantite = 0;
         this.dateAjout = null;
+        this.couponApplique = false;
     }
 }
 
@@ -236,7 +252,7 @@ const dateFin = new Date("2024-01-10");
 
 console.log(`Évolution du stock entre ${dateDebut.toDateString()} et ${dateFin.toDateString()} :`);
 console.log(stock.evolutionsStock(dateDebut, dateFin));
-
+panier.ajouterCouponSurArticle(article1, 10);
 
 module.exports = {
     Cube: Cube,

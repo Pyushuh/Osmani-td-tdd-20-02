@@ -31,6 +31,7 @@ describe('Tests de la classe Panier', function () {
     let article1, article2, article3;
     let articleErrrone;
     let remise;
+    let coupon;
 
     // Créer les articles avec ces valeurs avant d'exécuter chaque fonction de test
     beforeEach(function () {
@@ -40,6 +41,7 @@ describe('Tests de la classe Panier', function () {
         article3 = new Article("T-shirt", 34);
         articleErrrone = new Article("T-shirt frauduleux", -34);
         remise = 20;
+        coupon =10;
     });
 
     it('devrait ajouter un article au panier', function () {
@@ -86,6 +88,19 @@ describe('Tests de la classe Panier', function () {
         panier.viderPanier();
         assert.isEmpty(panier.articles);
         assert.isFalse(panier.remiseAppliquee);
+    });
+
+    it('devrait appliquer un coupon sur un article du panier', function () {
+        panier.ajouterArticle(article1);
+        panier.ajouterCouponSurArticle(article1, coupon); // Le coupon réduit le prix de 10%
+        assert.equal(article1.prix, 47.7);
+    });
+
+    it('ne devrait pas appliquer un coupon sur un article utilisant déjà un coupon', function () {
+        panier.ajouterArticle(article1);
+        panier.ajouterCouponSurArticle(article1, coupon);
+        panier.ajouterCouponSurArticle(article1, 30);
+        assert.equal(article1.prix, 47.7);
     });
 });
 
