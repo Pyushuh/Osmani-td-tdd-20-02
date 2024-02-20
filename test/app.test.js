@@ -108,6 +108,9 @@ describe('Tests de la classe Panier', function () {
     });
 
     it('ne devrait pas appliquer le coupon si la remise est inférieure à 0', function () {
+        panier.ajouterArticle(article1);
+        panier.ajouterCouponSurArticle(article1, couponNegatif);
+        assert.equal(article1.prix, 53);
     });
 
     it('ne devrait pas appliquer le coupon si la remise est supérieure au prix fort de l\'article', function () {
